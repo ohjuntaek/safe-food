@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.qnaMapper">
+
+	<!-- selectAll 을 부르려면 풀네임 mybatis.productMapper.selectAll 로 표현할 수 있다 -->
+	<select id="selectAll" resultType="com.ssafy.safefood.model.board.rest.QnA"> 
+		SELECT * FROM qna;
+	</select>
+	<insert id="insert" parameterType="com.ssafy.safefood.model.board.rest.QnA">
+		INSERT INTO qna(title,id,text,date) VALUES
+		(#{title}, #{id}, #{text}, #{date})
+	</insert>
+	<delete id="delete" parameterType="int">
+		DELETE FROM qna WHERE qnum = #{qnum};
+	</delete>
+	<update id="update" parameterType="com.ssafy.safefood.model.board.rest.QnA">
+		UPDATE qna SET title = #{title}, date = #{date}, text= #{text}
+		where qnum = #{qnum};
+	</update>
+	<select id="selectById" resultType="com.ssafy.safefood.model.board.rest.QnA" parameterType="String">
+		SELECT * FROM qna WHERE id = #{id}
+	</select>
+	<select id="selectByTitle" resultType="com.ssafy.safefood.model.board.rest.QnA" parameterType="String">
+		SELECT * FROM qna WHERE title = #{title}
+	</select>
+</mapper>
+
+<!-- mapper 파일 : sql 문 작성 -->

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="IngestMapper"> <!-- 네임스페이스의 인터페이스는 자동 생성(된거처럼) 된다 -->
+	<select id="ingestSelectAll" parameterType="String"   resultType="ingest">
+		select * from ingest where userid=#{userid} order by create_time desc;
+	</select>
+	
+	<insert id="addIngest" parameterType="ingest" useGeneratedKeys="true" keyProperty="ingest_no">
+		insert into ingest(userid, foodcode, create_time) values (#{userid}, #{foodcode}, #{create_time});
+	</insert>
+	
+	<delete id="deleteIngest" parameterType="int">
+		DELETE FROM ingest WHERE ingest_no = #{ingestno};
+	</delete>
+	
+	<select id="selectCaloryGroupByMonth" resultType="hashmap" parameterType="String">
+		SELECT concat(year(create_time), '-', month(create_time)) as ym, sum(calory) as calory, sum(carbo) as carbo
+		FROM ingest i JOIN food f ON i.foodcode = f.code
+		WHERE userid = #{id}
+		GROUP BY ym
+		order by ym;
+	</select>
+	
+	<select id="selectSumGroupByNutrient" resultType="map" parameterType="String">
+		select sum(calory) as sumcalory, sum(carbo) as sumcarbo, sum(protein) as sumprotein, sum(fat) as sumfat,
+			sum(sugar) as sumsugar, sum(natrium) as sumnatrium, sum(chole)
+		FROM ingest i JOIN food f ON i.foodcode = f.code
+		where userid LIKE concat('%',#{id},'%');
+	</select>
+	
+</mapper>

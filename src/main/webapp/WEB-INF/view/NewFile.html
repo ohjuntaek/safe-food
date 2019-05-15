@@ -1,0 +1,584 @@
+<!-- A web application created by Group 1: Keshav Iyengar, Soumaya Chaoui, Roldan Biete -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png"
+    href="http://www.myiconfinder.com/uploads/iconsets/256-256-a88af6c72c39a3d5053dcc476ef130b1-oven.png" />
+  <title>Food Creator</title>
+  <style type="text/css">
+  	/* 
+ * A web application created by Group 1: Keshav Iyengar, Soumaya Chaoui, Roldan Biete 
+*/
+
+/*--------- Top ---------*/
+
+body {
+    background-color: #FFBE9F;
+    z-index: -5;
+}
+
+#welcome {
+    font-family: 'Gloria Hallelujah', cursive;
+    border-bottom: 1px solid black;
+    background-color: #FCFAE1;
+}
+
+#welcome h1 {
+    color: #4C1B1B;
+}
+
+.lead {
+    font-family: 'Montserrat', sans-serif;
+    color: #4C1B1B;
+    font-size: 20px;
+}
+
+/*--------- Side Bar ---------*/
+
+#body {
+    height: 80vh;
+}
+
+.btn {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.side-selection {
+    width: 30%;
+    height: 80vh;
+    text-align: center;
+    float: left;
+    background-color: white;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    position: relative;
+    overflow: auto;
+}
+
+.side-selection h2 {
+    padding: 10px;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.accordion-style {
+    width: 95%;
+}
+
+.accordion-style h3 {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.accordion-style p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#accordion .ui-accordion-header {
+    background: #FCFAE1;
+}
+
+#accordion .ui-accordion-header.ui-state-active {
+    background: #BD8D46;
+}
+
+.accordion-style .btn {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#accordion {
+    margin-bottom: 10px;
+}
+
+.details {
+    font-family: 'Montserrat', sans-serif;
+    width: 90%;
+}
+
+ul {
+    margin-left: 5%;
+}
+
+li {
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+}
+
+hr {
+    width: 70%;
+    border-bottom: 1px solid black;
+}
+
+/*--------- App ---------*/
+
+.cook-app {
+    width: 70%;
+    height: 80vh;
+    float: right;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.foodDiv {
+    display: inline-block;
+    min-width: 100px;
+    min-height: 60px;
+    margin: 20px;
+    padding: 10px;
+}
+
+.img-resizer {
+    width: 80px;
+    height: 80px;
+}
+
+.hover-this:hover {
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.hover-this:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.oven {
+    width: 200px !important;
+    height: 200px !important;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.cookedText {
+    font-family: 'Gloria Hallelujah', cursive;
+    padding-top: 90px;
+    padding-bottom: 50px;
+    padding-left: 15px;
+    font-size: 20px;
+}
+
+.cookedImg {
+    height: 100px;
+    width: 150px;
+    margin: 10px;
+}
+
+/*--------- P5 Stuff ---------*/
+
+#canvas {
+    z-index: -1;
+    margin-left: 30%;
+    position: absolute;
+}
+
+/*--------- Footer ---------*/
+
+#footer {
+    display: block;
+    width: 100%;
+    height: 50px;
+    background-color: #FCFAE1;
+}
+
+#footer p {
+    font-size: 20px;
+    padding-top: 15px;
+    color: #4C1B1B;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*--------- Images ---------*/
+
+.prepped>.image.tomato {
+    background-image: url("https://dish-environment-prod-contentbucket-10u8bszryovz3.s3.amazonaws.com/assets/s3fs-public/styles/content_image_medium/public/101739657_Diced-Tomatoes-in-Ramekin_Photo-by-Meredith.jpg?itok=MnsBSv99");
+}
+
+.prepped>.image.dough {
+    background-image: url("https://images-gmi-pmc.edge-generalmills.com/4cb4c043-e72c-49cf-ba90-99bc4e76cd7b.jpg");
+}
+
+.prepped>.image.cheese {
+    background-image: url("https://d3u5bsc6xz12oq.cloudfront.net/s3fs-public/styles/promo_slides/public/slideshow-images/shredded-hero-1.jpg?itok=yT0JA9G-");
+}
+
+.prepped>.image.pepperoni {
+    background-image: url("https://images.eatthismuch.com/site_media/img/925_ldementhon_9b85ab48-5cf6-46ea-a887-4059fec23440.png");
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to
+/* .fade-leave-active below version 2.1.8 */
+
+    {
+    opacity: 0;
+}
+  </style>
+  
+  
+</head>
+
+<body>
+  <!-- Title -->
+  <section id="welcome" class="py-3">
+    <div class="primary-overlay text-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h1 class="display-2">
+              Welcome to <em>Food Creator!</em>
+            </h1>
+            <p class="lead">This is an interactive web application that allows the user to make different foods! Give it
+              a try below!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Food Area -->
+  <section id="body">
+    <div id="canvas"></div>
+    <div class="side-selection">
+      <h2>How does it work?</h2>
+      <hr>
+      <p class="details mx-auto">
+        Every ingredient on the right-side is draggable. All you have to do is drag and drop each ingredient onto the
+        stove.
+        <br><br>
+        Once you're done, then click the cook button to see what awesome food you've created! Just make sure that you
+        are tossing in the right ingredients for the recipes, which can be found below.
+      </p>
+      <h2>Pick your food!</h2>
+      <hr>
+      <div id="accordion" class="accordion-style mx-auto">
+        <h3>Make a Pizza</h3>
+        <div>
+          <p>
+            For the pizza lovers, enthusiasts, and journalists! This is the option for you. Get to creating awesome
+            pizzas with some classical pizza recipes!
+            <br><br>
+            Recipes include: Pepperoni pizza & Cheese Pizza
+          </p>
+          <button class="btn btn-info btn-lg">Make</button>
+        </div>
+        <h3>Create a Salad</h3>
+        <div>
+          <p>
+            Looking for a vegetarian option? Look no further! Put your salad tossing skills in motion and start making
+            some of our awesome salad recipes!
+            <br><br>
+            Recipes include: Caesar Salad & Greek Salad
+          </p>
+          <button class="btn btn-info btn-lg">Make</button>
+        </div>
+        <h3>Bake a Cake</h3>
+        <div>
+          <p>
+            Who doesn't love sweets? Get your ingredients ready and start making some delicious cakes! There are many
+            recipes to try!
+            <br><br>
+            Recipes include: Chocolate Cake, Vanilla Cake, & Strawberry Shortcake
+          </p>
+          <button class="btn btn-info btn-lg">Make</button>
+        </div>
+      </div>
+      <h2>How's it made and why?</h2>
+      <hr>
+      <p class="details mx-auto">
+        This web app was created for a group project in ITIS 4440 at UNC Charlotte by [Group 1] Keshav Iyengar, Soumaya
+        Chaoui,
+        and Roldan Biete.
+        <br><br>
+        For all the computer science lovers and geeks, this web application was made with the
+        following:
+      </p>
+      <ul>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>Vue.js</li>
+        <li>Bootstrap</li>
+        <li>jQuery</li>
+        <li>p5.js</li>
+      </ul>
+    </div>
+    <div class="text-center cook-app" id="cook-app">
+      <div id="app">
+        <food-item></food-item>
+        <dropcontainer></dropcontainer>
+        <button onclick="app.cook(event)" class="btn btn-danger btn-lg my-5" id="cookBtn">Cook</button>
+        <!-- <div id="fadecomponent"></div> -->
+        <input type='button' onclick='location.reload();' value='Reset' class="btn btn-secondary btn-lg my-5" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section id="footer">
+    <div class="spacer">
+      <p>All Rights Reserved - Copyright &copy; Food Creator</p>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/p5App.js"></script>
+  
+  <script>
+//A web application created by Group 1: Keshav Iyengar, Soumaya Chaoui, Roldan Biete
+
+  $(function () {
+      $("#accordion").accordion({
+          collapsible: true
+      });
+  });
+
+  var recipes = {
+      cheesePizza: ["oven", "dough", "tomato", "cheese"].sort(),
+      pepperoniPizza: ["oven", "dough", "tomato", "cheese", "pepperoni"].sort()
+  };
+
+  Vue.component("food-item", {
+      data() {
+          return {
+              foods: [{
+                  src: 'https://i.postimg.cc/KYhTh64s/tomatos.png',
+                  id: 'tomato',
+                  class: 'img-resizer tomato mx-3 hover-this',
+                  name: 'Tomato',
+                  alt: 'Tomato Image'
+              }, {
+                  src: 'https://i.postimg.cc/7Y4rfs7p/cheese.png',
+                  id: 'cheese',
+                  class: 'img-resizer cheese mx-3 hover-this',
+                  name: 'Cheese',
+                  alt: 'Cheese Image'
+              }, {
+                  src: 'https://i.postimg.cc/MKY2R7mX/dough.png',
+                  id: 'dough',
+                  class: 'img-resizer dough mx-3 hover-this',
+                  name: 'Dough',
+                  alt: 'Dough Image'
+              }, {
+                  src: 'https://i.postimg.cc/4ykkvw0H/pepperoni.png',
+                  id: 'pepperoni',
+                  class: 'img-resizer pepperoni mx-3 hover-this',
+                  name: 'Pepperoni',
+                  alt: 'Pepperoni Image'
+              }]
+          };
+      },
+      template:
+          `<div>
+              <div v-for="food in foods" class="foodDiv" ondrop="app.drop(event)" ondragover="app.allowDrop(event)">
+                  <img :src="food.src" :class="food.class" :id="food.id" draggable="true" ondragstart="app.drag(event)" :alt="food.alt">  
+              </div>
+          </div>`,
+  });
+
+  Vue.component("dropcontainer", {
+      template: `
+          <div class="row"> 
+              <div id="dropZone" ondrop="app.drop(event)" ondragover="app.allowDrop(event)">
+                  <img src="https://i.postimg.cc/V6H5YydQ/oven.png" alt="oven" class="oven img-resizer" id="oven">  
+              </div>
+              <div id="cookZone"></div>
+          </div>
+      `
+  });
+
+  // var fadecomponent = new Vue({
+//       el: "#fadecomponent",
+//       data: {
+//           show: true
+//       },
+//       template: `
+//         <div>
+//         <button v-on:click="show = !show">
+//         Toggle
+//         </button>
+//         <transition name="fade">
+//           <p v-if="show">fade</p>
+//         </transition>
+//         </div>
+//       `
+  // });
+  var app = new Vue({
+      el: "#app",
+      data: {
+          show: true
+      },
+      methods: {
+          allowDrop(ev) {
+              ev.preventDefault();
+          },
+          drag(ev) {
+              ev.target.classList.add("drag");
+              ev.dataTransfer.setData("text", "drag");
+          },
+          drop(ev) {
+              console.log("drop");
+              ev.preventDefault();
+              var data = ev.dataTransfer.getData("text");
+              if (ev.target !== this.$el.querySelector("." + data)) {
+                  if (ev.target.classList.contains("img-resizer")) {
+                      ev.target.parentNode.appendChild(this.$el.querySelector("." + data));
+                  } else {
+                      ev.target.appendChild(this.$el.querySelector("." + data));
+                  }
+              }
+              this.$el.querySelector("." + data).classList.remove("drag");
+          },
+          cook(ev) {
+              console.log("cook");
+              var ingredients = [];
+              var dropContainer = document.getElementById("dropZone");
+
+              //store all the ingredients in the ingredients array
+              for (var i = 0; i < dropContainer.children.length; i++) {
+                  ingredients.push(dropContainer.children[i].id);
+              }
+
+              ingredients.sort();
+
+              //check ingredients is equal to cheese pizza recipe
+              if (recipes.cheesePizza.length === ingredients.length &&
+                  recipes.cheesePizza.every(function (value, index) { return value === ingredients[index] })) {
+                  this.showCookedItem("https://i.postimg.cc/L6JjkQ4j/cheese-pizza.png");
+
+                  //check for pepperoni ingredients
+              } else if (recipes.pepperoniPizza.length === ingredients.length &&
+                  recipes.pepperoniPizza.every(function (value, index) { return value === ingredients[index] })) {
+                  this.showCookedItem("https://i.postimg.cc/WpgPpLDG/pepperoni-pizza.png");
+              }
+
+          },
+          showCookedItem(itemImageUrl) {
+              var dropCenter = document.getElementById("dropZone");
+              var cookZone = document.getElementById("cookZone");
+              var oven = document.getElementById("oven");
+              var cookBtn = document.getElementById("cookBtn");
+
+              oven.src = "https://i.postimg.cc/ncKXw3ps/oven.png";
+
+              cookBtn.style.display = "none";
+
+              //clear the ingredients images
+              for (var i = 0; i < dropCenter.children.length; i++) {
+                  if (dropCenter.children[i].id != "oven") {
+                      dropCenter.children[i].style.display = "none";
+                  }
+              }
+
+              var img = new Image();
+              var cookedItem;
+
+              switch (itemImageUrl) {
+                  case "https://i.postimg.cc/L6JjkQ4j/cheese-pizza.png":
+                      cookedItem = "Cheese Pizza";
+                      break;
+                  case "https://i.postimg.cc/WpgPpLDG/pepperoni-pizza.png":
+                      cookedItem = "Pepperoni Pizza";
+                      break;
+                  default:
+                      break;
+              }
+
+              var header = document.createTextNode("You created: " + cookedItem);
+              cookZone.classList.add("cookedText");
+              cookZone.appendChild(header);
+              img.id = "cookedPizza";
+              img.classList.add("cookedImg");
+              img.src = itemImageUrl;
+              cookZone.appendChild(img);
+          }
+      }
+  });
+
+  let chefsHat;
+  let steam;
+  var x = 0;
+  var y = 0;
+  var steamRiser = 0;
+
+  function preload() {
+      chefsHat = loadImage("https://i.postimg.cc/4NJYRMtW/chefhat.png");
+      steam = loadImage("https://i.postimg.cc/ydCZgypx/steam-tiny.png");
+      steamLg = loadImage("https://i.postimg.cc/d0NJgsrY/steam200.png");
+  }
+
+  function setup() {
+      let elementDims = document.getElementById("cook-app");
+      let canvas = createCanvas(elementDims.clientWidth, elementDims.clientHeight + 2);
+      canvas.parent('#canvas');
+      noStroke();
+  }
+
+  function draw() {
+      background(255, 190, 160);
+      let cookZoneCheck = document.getElementById("cookZone");
+      x = lerp(x, mouseX, 0.05);
+      y = lerp(y, mouseY, 0.05);
+
+      fill(255);
+      stroke(255);
+      image(chefsHat, mouseX - 8, mouseY - 28); //Chefs hat for cursor
+
+      for (var i = 0; i < cookZoneCheck.children.length; i++) {
+          if (cookZoneCheck.children[i].id == "cookedPizza") {
+              let cookedPosition = document.getElementById("cookedPizza");
+              frameRate(30);
+
+              image(steam, cookedPosition.offsetLeft + 8, cookedPosition.offsetHeight + (90 + steamRiser)); //Steam left
+              image(steamLg, cookedPosition.offsetLeft + 28, cookedPosition.offsetHeight + (70 + steamRiser)); //Large steam middle
+              image(steam, cookedPosition.offsetLeft + 48, cookedPosition.offsetHeight + (90 + steamRiser)); //Steam right
+
+              steamRiser = steamRiser - 5;
+
+              if (steamRiser > height) {
+                  steamRiser = -(steamRiser);
+              } else if (steamRiser + 80 < 0) {
+                  steamRiser = 10;
+              }
+          }
+      }
+  }
+
+
+  
+  </script>
+  
+  
+</body>
+
+</html>
