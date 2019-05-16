@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-@Data
 @Entity
 @Table(name="review")
 // 푸드 가져와서 코멘트랑 별점 매겨라

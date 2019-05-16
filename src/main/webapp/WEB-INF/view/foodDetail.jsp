@@ -554,7 +554,7 @@ hr {
 				<div class="row">
 					<div class="col-lg-12 text-center">
 						<h1 class="display-2" style="font-family: cursive; font-size: 4rem;">Food Ingestion Machine!</h1>
-						<p class="lead">This is an interactive web application that allows the user to ingest foods! Give it a try below!</p>
+						<p class="lead">${msg }</p>
 					</div>
 				</div>
 			</div>
@@ -605,9 +605,14 @@ hr {
 				<c:if test="${empty id}"><h3>로그인시 섭취 목록이 보입니다</h3></c:if>
 					<c:if test="${empty list2}">섭취하신 음식이 없습니다! 식품 정보에서 섭취를 해주세요~.~</c:if>
 					<div class="row">
+						<!-- 0 1 -->
+						<!-- 2 3 -->
+						<!-- 4 5 -->
+						<!-- 6 7 -->
+						<!-- 8 9 -->
 						<c:forEach var="j" begin="0" end="1">
 							<div class="col-lg-6">
-								<c:forEach var="i" items="${list2}" begin="${0+j}" end="${16+j}" step="1">
+								<c:forEach var="i" items="${list2}" begin="${0+j}" end="${16+j}" step="2">
 									<div class="card shadow mb-4">
 										<div class="card-header py-3">
 											<h6 class="m-0 font-weight-bold text-primary">${i.name}</h6>
@@ -736,26 +741,17 @@ hr {
               for (var i = 0; i < dropContainer.children.length; i++) {
                   ingredients.push(dropContainer.children[i].id);
               }
+              console.log(ingredients);
 
               ingredients.sort();
 
               //check ingredients is equal to cheese pizza recipe
 //             	  alert(ingredients.length);
               if(ingredients.length === 2)
-            	  {
+           	  {
             	  location.href="/addingest?foodcode=${list.code}";
             	  this.showCookedItem("${list.name }");
-            	  }
-              if (recipes.cheesePizza.length === ingredients.length &&
-                  recipes.cheesePizza.every(function (value, index) { return value === ingredients[index] })) {
-                  this.showCookedItem("https://i.postimg.cc/L6JjkQ4j/cheese-pizza.png");
-
-                  //check for pepperoni ingredients
-              } else if (recipes.pepperoniPizza.length === ingredients.length &&
-                  recipes.pepperoniPizza.every(function (value, index) { return value === ingredients[index] })) {
-                  this.showCookedItem("https://i.postimg.cc/WpgPpLDG/pepperoni-pizza.png");
-              }
-
+           	  }
           },
           showCookedItem(itemImageUrl) {
               var dropCenter = document.getElementById("dropZone");
@@ -776,17 +772,7 @@ hr {
 
               var img = new Image();
               var cookedItem;
-				
-              /* switch (itemImageUrl) {
-                  case "https://i.postimg.cc/L6JjkQ4j/cheese-pizza.png":
-                      cookedItem = "Cheese Pizza";
-                      break;
-                  case "https://i.postimg.cc/WpgPpLDG/pepperoni-pizza.png":
-                      cookedItem = "Pepperoni Pizza";
-                      break;
-                  default:
-                      break;
-              } */
+              
               cookedItem = "${list.name }";
 
               var header = document.createTextNode("You Ingested: " + cookedItem);
@@ -807,9 +793,9 @@ hr {
   var steamRiser = 0;
 
   function preload() {
-      chefsHat = loadImage("https://i.postimg.cc/4NJYRMtW/chefhat.png");
-      steam = loadImage("https://i.postimg.cc/ydCZgypx/steam-tiny.png");
-      steamLg = loadImage("https://i.postimg.cc/d0NJgsrY/steam200.png");
+//       chefsHat = loadImage("https://i.postimg.cc/4NJYRMtW/chefhat.png");
+//       steam = loadImage("https://i.postimg.cc/ydCZgypx/steam-tiny.png");
+//       steamLg = loadImage("https://i.postimg.cc/d0NJgsrY/steam200.png");
   }
 
   function setup() {
@@ -857,27 +843,7 @@ hr {
 							<%-- 							<%@ include file="NewFile.html"%> --%>
 						</div>
 					</div>
-					<!-- Related Projects Row -->
-					<h3 class="my-4">Related Projects</h3>
-					<div class="row">
-						<div class="col-md-3 col-sm-6 mb-4">
-							<a href="#"> <img class="img-fluid" src="/${list.img}" alt="">
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6 mb-4">
-							<a href="#"> <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6 mb-4">
-							<a href="#"> <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6 mb-4">
-							<a href="#"> <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-							</a>
-						</div>
-					</div>
-					<!-- /.row -->
+					
 				</div>
 				<!-- /.container -->
 				<!-- /.container-fluid -->

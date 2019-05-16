@@ -41,7 +41,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-        		<h1>QnA 게시판</h1>
+        		<h1>자유 게시판</h1>
 	<div id="app">
 		<div v-if="errored">Error In AJAX Transport</div>
 		<div v-else="errored">

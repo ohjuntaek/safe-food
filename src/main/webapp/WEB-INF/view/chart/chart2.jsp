@@ -64,7 +64,7 @@
                     <canvas id="myBarChart"></canvas>
                   </div>
                   <hr>
-                  굳
+                  	전체 사용자가 섭취한 음식의 영양소
                 </div>
               </div>
 
@@ -83,7 +83,7 @@
                     <canvas id="myPieChart"></canvas>
                   </div>
                   <hr>
-                  	굳
+                  	내가 먹은 음식의 총 영양소별 섭취비율을 보여줍니다
                 </div>
               </div>
             </div>
@@ -139,7 +139,7 @@
 			$.getJSON("http://localhost:8080/getsum", function(data) {
 				$.each(data, function(idx, obj) {
 					sumsugar = obj.sumsugar;
-					sumproteint = obj.sumprotein;
+					sumprotein = obj.sumprotein;
 					sumnatrium = obj.sumnatrium;
 					sumcarbo = obj.sumcarbo;
 					sumfat = obj.sumfat
@@ -154,7 +154,7 @@
 			$.getJSON("http://localhost:8080/getallsum", function(data) {
 				$.each(data, function(idx, obj) {
 					allsumsugar = obj.sumsugar;
-					allsumproteint = obj.sumprotein;
+					allsumprotein = obj.sumprotein;
 					allsumnatrium = obj.sumnatrium;
 					allsumcarbo = obj.sumcarbo;
 					allsumfat = obj.sumfat
@@ -175,9 +175,9 @@
 						{
 							type : 'doughnut',
 							data : {
-								labels : [ "당류", "단백질", "나트륨", "탄수화물", "지방" ],
+								labels : [ "당류", "단백질", "탄수화물", "지방" ],
 								datasets : [ {
-									data : [ sumsugar, sumprotein, sumnatrium, sumcarbo, sumfat  ],
+									data : [ sumsugar, sumprotein, sumcarbo, sumfat  ],
 									backgroundColor : [ '#4e73df', '#1cc88a',
 											'#36b9cc', '#36c2fc', '#58FAF4' ],
 									hoverBackgroundColor : [ '#2e59d9',
@@ -248,13 +248,13 @@
 				var myBarChart = new Chart(ctx, {
 				  type: 'bar',
 				  data: {
-					  labels : [ "당류", "단백질", "나트륨", "탄수화물", "지방" ],
+					  labels : [ "당류", "단백질", "탄수화물", "지방" ],
 				    datasets: [{
-				      label: "Revenue",
+				      label: "(m)g",
 				      backgroundColor: "#4e73df",
 				      hoverBackgroundColor: "#2e59d9",
 				      borderColor: "#4e73df",
-				      data: [ allsumsugar, allsumprotein, allsumnatrium, allsumcarbo, allsumfat  ],
+				      data: [ allsumsugar, allsumprotein, allsumcarbo, allsumfat  ],
 				    }],
 				  },
 				  options: {
@@ -283,13 +283,11 @@
 				      }],
 				      yAxes: [{
 				        ticks: {
-				          min: 0,
-				          max: 15000,
 				          maxTicksLimit: 5,
 				          padding: 10,
 				          // Include a dollar sign in the ticks
 				          callback: function(value, index, values) {
-				            return '$' + number_format(value);
+				            return number_format(value);
 				          }
 				        },
 				        gridLines: {
@@ -319,7 +317,7 @@
 				      callbacks: {
 				        label: function(tooltipItem, chart) {
 				          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-				          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+				          return  number_format(tooltipItem.yLabel) + "." + datasetLabel;
 				        }
 				      }
 				    },

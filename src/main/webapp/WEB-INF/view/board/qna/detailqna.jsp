@@ -33,7 +33,7 @@
 				<!-- End of Topbar -->
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-					<h1>QnA 상세보기</h1>
+					<h1>자유게시판 상세보기</h1>
 					<div id="app">
 						<div v-if="errored">Error In AJAX Transport</div>
 						<div v-else="errored">

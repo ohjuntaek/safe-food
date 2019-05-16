@@ -50,7 +50,7 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">리뷰</h1>
-          <p class="mb-4">음식에 대해 리뷰..<a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+          <p class="mb-4">음식에 대해 리뷰...</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">

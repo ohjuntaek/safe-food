@@ -36,6 +36,9 @@
     <li class="nav-item">
         <a class="nav-link" href="/ingestlist"> <i class="fas fa-fw fa-table"></i> <span>내 섭취 정보</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/chooselist"> <i class="fas fa-fw fa-table"></i> <span>찜한 식품</span></a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Heading -->

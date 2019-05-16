@@ -1,3 +1,4 @@
+    
 package com.ssafy.safefood;
 
 import org.springframework.boot.SpringApplication;

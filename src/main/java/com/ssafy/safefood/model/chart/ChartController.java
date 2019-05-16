@@ -40,7 +40,7 @@ public class ChartController {
 		return json;
 	}
 	@GetMapping("/getallsum")
-	public @ResponseBody String getAllSumGroupByNutrient(HttpSession session) {
+	public @ResponseBody String getAllSumGroupByNutrient() {
 		Gson gson = new Gson();
 		String json;
 		json = gson.toJson(ingestService.getSumGroupByNutrient(""));

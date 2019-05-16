@@ -56,6 +56,9 @@ public class ReviewController {
 		ReviewVO review = reviewRepo.findById(no).get();
 		model.addAttribute("list", foodDAO.findByCode(review.getFoodcode()));
 		model.addAttribute("rlist", review);
+		List<Integer> sumrating = reviewRepo.sumrating(review.getFoodcode());
+		model.addAttribute("sumrating",sumrating.get(0));
+		
 		return "board/review/viewReview";
 	}
 }

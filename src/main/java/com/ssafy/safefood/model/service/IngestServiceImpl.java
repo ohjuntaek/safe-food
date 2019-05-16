@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.safefood.model.repository.IngestDAO;
+import com.ssafy.safefood.model.vo.ChooseVO;
 import com.ssafy.safefood.model.vo.FoodVO;
 import com.ssafy.safefood.model.vo.IngestVO;
 import com.ssafy.safefood.model.vo.UserVO;
@@ -35,5 +36,30 @@ public class IngestServiceImpl implements IngestService {
 	@Override
 	public List<Map<String, Double>> getSumGroupByNutrient(String id) {
 		return dao.getSumGroupByNutrient(id);
+	}
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<FoodVO> selectAllChooseList(UserVO user) {
+		if (user == null) {
+			return null;
+		} else {
+			return dao.selectAllChoose(user.getId());
+		}
+	}
+	@Override
+	public int addChoose(ChooseVO choose) {
+		// TODO Auto-generated method stub
+		return dao.addChoose(choose);
+	}
+	@Override
+	public int deleteChoose(ChooseVO choose) {
+		// TODO Auto-generated method stub
+		return dao.deleteChoose(choose);
 	}
 }

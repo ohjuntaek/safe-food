@@ -67,7 +67,7 @@ a.btn.btn-primary {
                                             </p>
                                             <a href="/foodlist/${i.code}" class="btn btn-primary">상세 보기</a>
                                             <c:if test="${not empty id}">
-                                                <a href="/addingest?foodcode=${i.code}" class="btn btn-primary">섭취하기</a>
+                                                <a href="/addchoose?foodcode=${i.code}" class="btn btn-primary">찜하기</a>
                                             </c:if>
                                         </div>
                                     </div>

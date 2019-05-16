@@ -30,4 +30,22 @@
 		where userid LIKE concat('%',#{id},'%');
 	</select>
 	
+	
+	
+	
+	
+	
+	<select id="chooseSelectAll" parameterType="String"   resultType="choose">
+		select * from choose where userid=#{userid};
+	</select>
+	
+	<insert id="addChoose" parameterType="choose">
+		insert into choose(userid, foodcode) values (#{userid}, #{foodcode});
+	</insert>
+	
+	<delete id="deleteChoose" parameterType="choose">
+		DELETE FROM choose WHERE userid = #{userid} and foodcode = #{foodcode};
+	</delete>
+	
+	
 </mapper>

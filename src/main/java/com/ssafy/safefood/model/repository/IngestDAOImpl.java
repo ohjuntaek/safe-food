@@ -6,8 +6,10 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Repository;
 
+import com.ssafy.safefood.model.vo.ChooseVO;
 import com.ssafy.safefood.model.vo.FoodVO;
 import com.ssafy.safefood.model.vo.IngestVO;
 
@@ -49,5 +51,28 @@ public class IngestDAOImpl implements IngestDAO {
 	@Override
 	public List<Map<String, Double>> getSumGroupByNutrient(String id) {
 		return sqlSession.selectList(namespace +"selectSumGroupByNutrient", id);
+	}
+
+	@Override
+	public List<FoodVO> selectAllChoose(String userid) {
+		List<ChooseVO> chooseList = sqlSession.selectList(namespace + "chooseSelectAll", userid);
+		List<FoodVO> list = new ArrayList<>();
+		for (ChooseVO choose : chooseList) {
+			FoodVO food = foodDAO.findByCode(choose.getFoodcode());
+			list.add(food);
+		}
+		return list;
+	}
+
+	@Override
+	public int addChoose(ChooseVO choose) throws DuplicateKeyException {
+		return sqlSession.insert(namespace + "addChoose", choose);
+	}
+
+	@Override
+	public int deleteChoose(ChooseVO choose) {
+		// TODO Auto-generated method stub
+		System.out.println(choose);
+		return sqlSession.delete(namespace + "deleteChoose", choose);
 	}
 }
